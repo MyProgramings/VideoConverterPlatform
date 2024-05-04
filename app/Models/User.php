@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function videos()
+    {
+        return $this->hasMany('App\Models\Video');
+    }
+
+    public function videoInHistory()
+    {
+        return $this->belongsToMany('App\Models\Video', 'video_user', 'user_id', 'video_id')->withTimestamps()->withPivot('id');
+    }
 }

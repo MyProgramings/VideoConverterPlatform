@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('layouts.main');
+})->name('main');
+
+Route::get('/', 'App\Http\Controllers\MainController@index')->name('main');
+
+Route::resource('/videos', VideoController::class);
